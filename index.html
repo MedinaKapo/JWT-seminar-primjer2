@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>WT seminar</title>
+    <script type="text/javascript">
+        function disableBack() {
+            window.history.forward();
+        }
+        setTimeout("disableBack()", -1);
+        window.onunload = function() {
+            null
+        };
+    </script>
+    <style>
+        @import url(http://fonts.googleapis.com/css?family=Raleway);
+        * {
+            box-sizing: border-box;
+            font-family: "Raleway", sans-serif;
+            word-wrap: break-word;
+            white-space: normal;
+        }
+        
+        body {
+            margin: 0;
+        }
+        
+        .naslov {
+            background-color: #f1f1f1;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .traka {
+            overflow: hidden;
+            background-color: #333;
+            width: 100%;
+            height: 10%;
+            padding: 10px;
+        }
+        
+        .button {
+            position: absolute;
+            color: white;
+            background-color: black;
+            border: none;
+            padding: 1% 1%;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 2% 1%;
+            transition-duration: 0.4s;
+            cursor: pointer;
+            border-radius: 25px;
+        }
+        
+        .button:hover {
+            color: black;
+            background-color: whitesmoke;
+        }
+        
+        .odjeljak {
+            width: 31.3%;
+            padding: 15px;
+            border-radius: 25px;
+            border: 2px solid #73AD21;
+            height: 400px;
+            float: left;
+            margin: 1%;
+            margin-top: 0;
+        }
+        
+        .glavni {
+            padding: 1%;
+        }
+        
+        #prvi,
+        #drugi,
+        #treci {
+            border: 2px solid black;
+            border-radius: 10px;
+            color: white;
+            background-color: lightblue;
+            margin: auto;
+            padding: 1%;
+            height: 20%;
+            text-align: center;
+            font-size: 2vw;
+        }
+        
+        #trenutni,
+        #refresh {
+            width: 95%;
+            height: 75%;
+            resize: none;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            margin-top: 1%;
+        }
+        
+        #secure {
+            background-color: #04AA6D;
+            color: white;
+            padding: 1% 1%;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            font-size: 16px;
+            margin: 2% 1%;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            transition-duration: 0.4s;
+            cursor: pointer;
+            position: relative;
+            white-space: normal;
+        }
+        
+        #secure:hover {
+            color: green;
+            background-color: whitesmoke;
+        }
+        
+        .glavni:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        
+        @media screen and (max-width:600px) {
+            .odjeljak {
+                width: 100%;
+            }
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+            table-layout: fixed;
+            word-wrap: break-word;
+            margin-top: 1%;
+            font-size: 1vw;
+        }
+        
+        tr,
+        td,
+        th {
+            border: 1px solid #dddddd;
+            text-align: left;
+        }
+    </style>
+    <script>
+        function loadDoc() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("trenutni").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", '/api/tokeni', true);
+            xhttp.send();
+            var xhttp2 = new XMLHttpRequest();
+            xhttp2.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("refresh").innerHTML = this.responseText;
+                }
+            };
+            xhttp2.open("GET", '/api/tokeniref', true);
+            xhttp2.send();
+
+            var xhttp4 = new XMLHttpRequest();
+            xhttp4.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    const obj = JSON.parse(this.responseText);
+                    document.getElementById("ime").innerHTML = obj.ime.split(' ')[0];
+                    document.getElementById("prezime").innerHTML = obj.ime.split(' ')[1];
+                    document.getElementById("puno").innerHTML = obj.ime;
+                    document.getElementById("email").innerHTML = obj.email;
+                }
+            };
+            xhttp4.open("GET", '/api/informacije', true);
+            xhttp4.send();
+
+
+        }
+
+
+        function novi() {
+
+            var xhttp3 = new XMLHttpRequest();
+            xhttp3.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    const obj = JSON.parse(this.responseText);
+                    document.getElementById("trenutni").innerHTML = obj.acc;
+                    document.getElementById("refresh").innerHTML = obj.ref;
+                }
+            };
+            xhttp3.open("GET", '/api/tokenrefresh', true);
+            xhttp3.send();
+        };
+    </script>
+</head>
+
+<body onload="loadDoc()">
+
+    <div class="naslov">
+        <h1 id="glavni">JWT tokeni za trenutnog korisnika</h1>
+        <form action="http://localhost:3000/api/logout" method="GET" style="width: 100%; height: 40%;">
+            <input type="submit" class="button" id="login" value="Logout" style=" top: 0; right: 0;" /></form>
+        <p>Implementacioni dio seminarskog rada iz predmeta "Web tehnologije"</p>
+    </div>
+
+    <div class="traka">
+    </div>
+    <div class="dugmic" style="display: block; position: relative; margin: 0; width: 50%; height: 25%;">
+        <button type="button" onclick="novi()" class="button" style="display: block; width: 50%; position: relative;
+        ">Generiši novi refresh token</button></div>
+
+    <div class="glavni">
+        <div class="odjeljak" id="p">
+            <h2 id="prvi">Trenutno aktivni JWT</h2>
+            <textarea id="trenutni">
+            </textarea>
+        </div>
+
+        <div class="odjeljak" id="d">
+            <h2 id="drugi">Trenutno aktivni refresh JWT</h2>
+            <textarea id="refresh">
+    </textarea>
+
+        </div>
+        <div class="odjeljak" id="t">
+            <h2 id="treci">Informacije izvedene iz JWT</h2>
+            <table id="podaci">
+                <tr>
+                    <th style="align-items: center; ">Atribut</th>
+                    <th style="align-items: center; ">Vrijednost</th>
+                </tr>
+                <tr>
+                    <td style="text-align:center; ">Ime</td>
+                    <td id="ime" style="text-align:center; "></td>
+                </tr>
+                <tr>
+                    <td style="text-align:center; ">Prezime</td>
+                    <td id="prezime" style="text-align:center; "></td>
+                </tr>
+                <tr>
+                    <td style="text-align:center; ">Puno ime i prezime</td>
+                    <td id="puno" style="text-align:center; "></td>
+                </tr>
+                <tr>
+                    <td style="text-align:center; ">Email</td>
+                    <td id="email" style="text-align:center; "></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="dugmic" style="display: block; position: relative; margin: 0; width: 50%; height: 25%;">
+        <form action="http://localhost:3000/api/secure" method="GET" style="width: 100%;">
+            <input type="submit" class="button" id="secure" value="Provjera validnosti JWT-a" style="margin-left: auto;margin-right: auto;
+            height: 50%; width: 40%; border-radius: 25px; float: left; margin: 1%;"></form>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Početna stranica</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <script type="text/javascript">
+        function disableBack() {
+            window.history.forward();
+        }
+        setTimeout("disableBack()", 0);
+        window.onunload = function() {
+            null
+        };
+    </script>
+    <style>
+        @import url(http://fonts.googleapis.com/css?family=Raleway);
+        * {
+            box-sizing: border-box;
+            word-wrap: break-word;
+            background-color: #f1f1f1;
+        }
+        
+        body {
+            font-family: 'Raleway', sans-serif;
+            word-wrap: break-word;
+        }
+        
+        .naslov {
+            background-color: #f1f1f1;
+            padding: 15px;
+            text-align: center;
+            font-size: 20px;
+        }
+        
+        .odjeljak {
+            margin: 1%;
+            display: inline-block;
+            width: 30.7%;
+            padding: 10px;
+            height: 40%;
+            border-radius: 25px;
+        }
+        
+        .red {
+            margin: auto;
+            padding: 15px;
+        }
+        
+        .red:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        
+        input[type=text],
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+        }
+        
+        input[type=submit] {
+            background-color: #04AA6D;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+        }
+        
+        .prijava {
+            background-color: #f1f1f1;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        @media (max-width: 600px) {
+            .column {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2 style="text-align: center;
+     padding: 15px;
+            text-align: center;
+            font-size: 30px;">Ovo je početna stranica implementacionog dijela seminarskog rada iz predmeta "Web tehnologije".</h2>
+    <p style="text-align: center;">Cilj ovog seminarskog rada je da prikaže na koji način funkcionišu JWT tokeni i šta se dešava prilikom upotrebe istih sa stajališta frontend-a.</p>
+    <p style="text-align: center;">Ukoliko želite da se prijavite, unesite kredencijale i pritisnite dugme "Login". Pošto je u pitanju pokazni primjer, koristite default-ne kredencijale.</p>
+
+    <div class="naslov">
+        <h2>Default-ni kredencijali su (odaberite jednog od ponuđenih korisnika):</h2>
+    </div>
+
+    <div class="red" style="width: 100%; height: 100%; display: inline-flex;">
+        <div class="odjeljak" style="background-color:rgb(162, 228, 124); float: left;">
+            <h4 class="lista" style="background-color: rgb(162, 228, 124);">
+
+                ime i prezime: seminar seminarski
+            </h4>
+            <h4 class="lista" style="background-color: rgb(162, 228, 124);">
+                email: seminar@seminar.com
+            </h4>
+        </div>
+        <div class="odjeljak" style="background-color:rgb(110, 206, 110); display: inline; margin-left: 2%; margin-right: 2%;">
+            <h4 class="lista" style="background-color:rgb(110, 206, 110);">
+
+                ime i prezime: miki maus
+            </h4>
+            <h4 class="lista" style="background-color:rgb(110, 206, 110);">
+                email: miki@miki.com
+            </h4>
+        </div>
+        <div class="odjeljak" style="background-color:rgb(81, 230, 94); float: right;">
+            <h4 class="lista" style="background-color:rgb(81, 230, 94);">
+
+                ime i prezime: minnie mouse
+            </h4>
+            <h4 class="lista" style="background-color:rgb(81, 230, 94);">
+                email: minnie@minnie.com
+            </h4>
+        </div>
+    </div>
+    <form action="http://localhost:3000/api/login" method="POST" style="width: 100%; height: 40%;">
+        <div class="prijava" style="width: 40%; margin:auto;border-radius: 25px; position: relative;">
+            <div class="maliredovi">
+                <div class="malekolone" style="width:48%;display:inline-block;">
+                    <label class="labele">Ime i prezime:</label>
+                    <input type="text" name="ime" class="unosi">
+                </div>
+            </div>
+            <div class="maliredovi">
+                <div class="malekolone" style="width:48%;display:inline-block; margin: 1%; height: 50%;">
+                    <label class="labele">Email:</label>
+                    <input type="text" name="email" class="unosi">
+                </div>
+                <br>
+            </div>
+
+            <input type="submit" class="button" id="login" value="Login" style="margin-left: auto;margin-right: auto;
+             height: 50%; width: 40%; border-radius: 25px;">
+
+        </div>
+        </div>
+    </form>
+</body>
+
+</html>

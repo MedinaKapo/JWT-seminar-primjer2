@@ -1,0 +1,157 @@
+@import url(http://fonts.googleapis.com/css?family=Raleway);
+* {
+    box-sizing: border-box;
+    font-family: "Raleway", sans-serif;
+}
+
+body {
+    margin: 0;
+}
+
+.naslov {
+    background-color: #f1f1f1;
+    padding: 20px;
+    text-align: center;
+}
+
+.traka {
+    overflow: hidden;
+    background-color: #333;
+}
+
+#logout {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: white;
+    background-color: black;
+    border: none;
+    padding: 1% 1%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 2% 1%;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 25px;
+}
+
+#logout:hover {
+    color: black;
+    background-color: whitesmoke;
+}
+
+#reftok:hover {
+    color: green;
+    background-color: whitesmoke;
+}
+
+.traka a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 25px;
+    text-decoration: none;
+}
+
+#logout {
+    float: right;
+}
+
+#reftok {
+    color: white;
+    background-color: black;
+    border: none;
+    padding: 1%;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: auto;
+    position: relative;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 25px;
+    color: white;
+    background-color: blue;
+}
+
+.traka a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.odjeljak {
+    width: 31.3%;
+    padding: 15px;
+    border-radius: 25px;
+    border: 2px solid #73AD21;
+    height: 450px;
+    float: left;
+    margin: 1%;
+}
+
+.glavni {
+    padding: 1%;
+}
+
+#prvi,
+#drugi,
+#treci {
+    border: 2px solid black;
+    border-radius: 10px;
+    color: white;
+    background-color: lightblue;
+    margin: auto;
+    padding: 1%;
+    height: 20%;
+    text-align: center;
+}
+
+#t {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1%;
+    display: block;
+    position: relative;
+}
+
+#trenutni,
+#refresh {
+    width: 95%;
+    height: 75%;
+    resize: none;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-top: 1%;
+}
+
+.glavni:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+@media screen and (max-width:600px) {
+    .odjeljak {
+        width: 100%;
+    }
+}
+
+table {
+    border-collapse: collapse;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    table-layout: fixed;
+    word-wrap: break-word;
+}
+
+tr,
+td,
+th {
+    border: 1px solid #dddddd;
+    text-align: left;
+}

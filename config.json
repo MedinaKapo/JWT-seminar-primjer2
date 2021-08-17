@@ -1,0 +1,7 @@
+{
+    "secret": "tajna-sifra",
+    "refreshTokenSecret": "tajna-refresh-sifra",
+    "port": 3000,
+    "tokenLife": 300,
+    "refreshTokenLife": 86400
+}

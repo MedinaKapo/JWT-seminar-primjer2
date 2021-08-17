@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>WT seminar</title>
+    <style>
+        @import url(http://fonts.googleapis.com/css?family=Raleway);
+        * {
+            box-sizing: border-box;
+            font-family: "Raleway", sans-serif;
+            word-wrap: break-word;
+            white-space: normal;
+        }
+        
+        body {
+            margin: 0;
+        }
+        
+        .naslov {
+            background-color: #f1f1f1;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .traka {
+            overflow: hidden;
+            background-color: #333;
+            height: 40%;
+            padding: 15px;
+        }
+        
+        .button {
+            position: absolute;
+            color: white;
+            background-color: black;
+            border: none;
+            padding: 1% 1%;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 2% 1%;
+            transition-duration: 0.4s;
+            cursor: pointer;
+            border-radius: 25px;
+            float: right;
+        }
+        
+        .button:hover {
+            color: black;
+            background-color: whitesmoke;
+        }
+        
+        .odjeljak {
+            width: 50%;
+            padding: 15px;
+            border-radius: 25px;
+            border: 2px solid #73AD21;
+            height: 400px;
+            margin: auto;
+        }
+        
+        .glavni {
+            padding: 1%;
+        }
+        
+        #prvi {
+            border: 2px solid black;
+            border-radius: 10px;
+            color: white;
+            background-color: lightblue;
+            margin: auto;
+            padding: 1%;
+            height: 20%;
+            text-align: center;
+            font-size: 2vw;
+        }
+        
+        #trenutni {
+            width: 95%;
+            height: 75%;
+            resize: none;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            margin-top: 1%;
+        }
+        
+        .glavni:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        
+        @media screen and (max-width:600px) {
+            .odjeljak {
+                width: 100%;
+            }
+        }
+    </style>
+    <script>
+        function loadDoc() {
+            var xhttp3 = new XMLHttpRequest();
+            xhttp3.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("trenutni").innerHTML = this.responseText;
+                }
+            };
+            xhttp3.open("GET", '/api/tokeni', true);
+            xhttp3.send();
+        }
+    </script>
+</head>
+
+<body onload="loadDoc()">
+
+    <div class="naslov">
+        <h1 id="glavni">JWT tokeni za trenutnog korisnika</h1>
+        <form action="http://localhost:3000/api/logout" method="GET" style="width: 100%; height: 40%;">
+            <input type="submit" class="button" id="login" value="Logout" style=" top: 0;
+            right: 0;" /></form>
+        <p>Implementacioni dio seminarskog rada iz predmeta "Web tehnologije"</p>
+        <p>Ovom stranicom se potvrđuje da je refresh token još uvijek aktuelan i kreiran je novi access token koji se može vidjeti u prostoru ispod.</p>
+        <p>Ovaj token je od sada novi pristupni token i zabilježen je u cookie-u.</p>
+    </div>
+
+    <div class="traka">
+
+    </div>
+
+    <div class="glavni">
+        <div class="odjeljak" id="p">
+            <h2 id="prvi">Trenutno aktivni JWT</h2>
+            <textarea id="trenutni">
+            </textarea>
+        </div>
+
+        <div id="nazad">
+            <form action="http://localhost:3000/api/index" method="GET" style="width: 100%; height: 40%; display: block;">
+                <input type="submit" class="button" id="nazad" value="Nazad" style="float: left;" /></form>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
